@@ -1,0 +1,14 @@
+---
+- name: Create NAT chain
+  firewalld: 
+    masquerade: yes 
+    permanent: yes
+    state: enabled 
+    zone: public
+  notify: 
+    - Restarted Firewalld
+  when: inventory_hostname == "{{ item }}"
+  loop:
+    - ISP 
+    - RTR-L
+    - RTR-R
