@@ -1,0 +1,7 @@
+---
+- name: Workshop on competence Network and system administration
+  hosts: all
+  become: true 
+
+  roles: 
+    - role-NAT
