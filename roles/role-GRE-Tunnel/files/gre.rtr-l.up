@@ -1,0 +1,4 @@
+#!/bin/bash
+ip tunnel add tun1 mode gre local 4.4.4.100 remote 5.5.5.100 ttl 255
+ip link set tun1 up
+ip addr add 172.16.1.1/24 dev tun1

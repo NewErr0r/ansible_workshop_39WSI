@@ -1,0 +1,10 @@
+---
+- name: GRE | Deploy gre tunnel on RTR-L
+  include_tasks: RTR-L.yaml
+  when: 
+    - inventory_hostname == "RTR-L"
+  
+- name: GRE | Deploy gre tunnel on RTR-R
+  include_tasks: RTR-R.yaml
+  when: 
+    - inventory_hostname == "RTR-R"

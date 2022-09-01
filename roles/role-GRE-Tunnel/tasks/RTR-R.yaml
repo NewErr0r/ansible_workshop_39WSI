@@ -1,0 +1,33 @@
+- name: GRE | create file 'gre.up'
+  copy: 
+    src: gre.rtr-r.up
+    dest: /etc/gre.up
+    mode: "ugo+x"
+
+- name: GRE | configure file 'crontab'
+  copy:
+    src: crontab
+    dest: /etc/crontab
+
+- name: GRE | Up gre tunnel 
+  shell: | 
+    cd /etc 
+    ./gre.up
+  ignore_errors: true
+  
+
+- name: GRE | Permission firewalld
+  firewalld: 
+    service: gre
+    permanent: yes 
+    state: enabled 
+  notify:
+    - Restarted Firewalld
+
+- name: GRE | Permission firewalld
+  firewalld: 
+    port: 47/tcp
+    permanent: yes 
+    state: enabled 
+  notify:
+    - Restarted Firewalld
